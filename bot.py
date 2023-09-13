@@ -2,15 +2,21 @@ import discord
 from discord.ext import commands
 import os
 import openai
+from dotenv import load_dotenv
 
 intents = discord.Intents.default()
 intents.message_content = True
 
 bot = commands.Bot(command_prefix='!', intents=intents)
 
+# Load enviroment variables from .env
+load_dotenv()
+DISCORD_API_TOKEN = os.getenv("DISCORD_API_TOKEN")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
 
 def ChatGPT(message):
-    openai.api_key = os.getenv("OPENAI_API_KEY")
+    openai.api_key = OPENAI_API_KEY
 
     completion = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
@@ -24,7 +30,7 @@ def ChatGPT(message):
     return completion.choices[0].message.content
 
 
-def dall_e(description):
+def Dall_E(description):
     response = openai.Image.create(
     prompt=description,
     n=1,
@@ -64,11 +70,11 @@ async def on_message(message):
     if message.content.startswith("!image"):
         description = message.content[len('!image'):].strip()
 
-        url = dall_e(description)
+        url = Dall_E(description)
 
         await message.channel.send(url)
 
-bot.run('<Insert bot token here>')
+bot.run(DISCORD_API_TOKEN)
 
 
 
