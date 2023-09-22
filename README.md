@@ -1,6 +1,9 @@
 # Discord-AI-integration
 Discord bot that brings ChatGPT and Dall-E to a server
 
+!prompt <your message> for ChatGPT prompt
+!image <image request> for Dall-E image
+
 
 # Setup
 ## Create bot with no functionality
