@@ -1,4 +1,4 @@
-# Discord-AI-integration
+# Discord-ChatGPT-integration
 Discord bot that brings ChatGPT and Dall-E to a server
 
 !prompt "insert text" for ChatGPT prompt
