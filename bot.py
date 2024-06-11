@@ -53,13 +53,13 @@ def ChatGPT(message):
 
 
 def Dall_E(description):
-    response = openai.Image.create(
+    response = openai.images.generate(
     prompt=description,
     n=1,
     size="512x512"
 )
     
-    image_url = response['data'][0]['url']
+    image_url = response.data[0].url
     
     return image_url
 
